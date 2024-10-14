@@ -1,101 +1,87 @@
+'use client'
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
+
+import { FcGoogle } from "react-icons/fc";
+import { FaApple } from "react-icons/fa";
+import { useState } from "react";
+import SignUpModal from "@/components/library/modals/SignUpModal";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  return (
+    <div className="flex lg:flex-row justify-center lg:items-center  gap-14 flex-col lg:gap-[120px] h-[100vh] font-font1">
+
+       <div className="flex lg:flex-row items-center justify-center flex-col lg:gap-[250px] gap-14">
+
+          <div> 
+              <Image src="/logo.png" alt="logo" width={100} height={100} className="w-12 lg:w-[380px] lg:m-auto opacity-90"/>
+          </div>
+           
+           <div className="">
+
+              <h1 className="lg:text-[50px] text-[32px] tracking-tight mb-8 font-font2">Happening now</h1>
+
+              <div className="lg:w-[65%]">
+
+                <h1 className="font-font2 text-[20px] mb-6">Join today.</h1>
+
+                <div className="flex flex-col gap-3 mb-4">
+
+                  <Button className="text-[14px] h-[50px] rounded-full flex gap-3">
+                    <FcGoogle className="w-[20px] h-[20px]" />
+                    Sign up with Google
+                  </Button>
+
+                  <Button className="text-[14px] h-[50px] rounded-full flex gap-3">
+                    <FaApple className="w-[20px] h-[20px]" />
+                    Sign up with Apple
+                  </Button>
+
+                </div>
+
+               <div className="flex flex-row w-full justify-center items-center mb-5">
+                  <hr className="opacity-10"/>
+                   <p className="text-white opacity-30">or</p>
+                  <hr className="opacity-10"/>
+               </div>
+
+                <div>
+                  <Button onClick={openModal} variant='secondary' className="text-[14px] h-[50px] rounded-full w-full mb-5">Create account</Button>
+                  
+                  <p className="mb-8 opacity-70 text-[14px]">
+                  By signing up, you agree to the <Link href='#' className="hover:text-white border-b ">Terms of Service</Link> and <Link href='#' className="hover:text-white border-b ">Privacy Policy</Link> including <Link href='#' className="hover:text-white border-b ">Cookie Use</Link>.
+                  </p>
+                </div>
+              </div>
+
+              <div>
+                <h1 className="mb-5 text-[20px] font-font2">Already have an account?</h1>
+                <Link href='#'><Button variant='default' className="text-[14px] h-[40px]">Log in</Button></Link>
+              </div>
+           </div> 
+
+          
+         
+       </div>
+
+       {
+         isModalOpen && (
+           <SignUpModal onClose={closeModal} />
+         )
+       }
+
     </div>
   );
 }
